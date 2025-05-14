@@ -58,11 +58,13 @@
         );
 
         const data = await response.json();
+        console.log("Gemini raw response:", data);
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response from Gemini.";
         chatBox.innerHTML += `<div><strong>Bot:</strong> ${reply}</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
 
       } catch (err) {
+         console.error("Error while calling Gemini:", err); // More detailed error
         chatBox.innerHTML += `<div style="color:red;"><strong>Error:</strong> Something went wrong.</div>`;
       }
     }
